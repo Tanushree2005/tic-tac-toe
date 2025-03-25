@@ -79,18 +79,15 @@ const GameBoard: React.FC<GameBoardProps> = ({ className }) => {
   return (
     <div 
       ref={boardRef}
-      className={`grid grid-cols-3 gap-2 md:gap-3 aspect-square ${className}`}
+      className={`grid grid-cols-3 gap-2 md:gap-3 ${className}`}
     >
       {board.map((cell, index) => (
         <div
           key={index}
-          className={`game-cell ${
-            gameStatus !== 'playing' || cell !== null ? 'game-cell-disabled' : ''
-          } ${
-            winningCombination?.includes(index) 
-              ? 'winning-cell border-blue-300 dark:border-blue-500' 
-              : ''
-          }`}
+          className={`game-cell w-full aspect-square flex items-center justify-center bg-white/50 dark:bg-white/5 backdrop-blur-sm rounded-md border border-white/30 dark:border-white/10 shadow-sm 
+          hover:bg-white/70 dark:hover:bg-white/10 transition-all duration-300 cursor-pointer
+          ${gameStatus !== 'playing' || cell !== null ? 'pointer-events-none' : ''}
+          ${winningCombination?.includes(index) ? 'winning-cell border-blue-300 dark:border-blue-500' : ''}`}
           onClick={() => makeMove(index)}
         >
           {renderX(index)}

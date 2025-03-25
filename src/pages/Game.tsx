@@ -14,7 +14,8 @@ const Game = () => {
     winner, 
     resetGame, 
     currentPlayer, 
-    players 
+    players,
+    startNewGame 
   } = useGame();
   
   const [showGameOverModal, setShowGameOverModal] = useState(false);
@@ -35,6 +36,13 @@ const Game = () => {
       navigate('/');
     }
   }, [gameStatus, navigate]);
+
+  // Start a new game if none is in progress
+  useEffect(() => {
+    if (gameStatus === 'waiting') {
+      startNewGame('offline');
+    }
+  }, [gameStatus, startNewGame]);
   
   const handlePlayAgain = () => {
     setShowGameOverModal(false);
