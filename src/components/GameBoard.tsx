@@ -80,14 +80,22 @@ const GameBoard: React.FC<GameBoardProps> = ({ className }) => {
     <div 
       ref={boardRef}
       className={`grid grid-cols-3 gap-2 md:gap-3 ${className}`}
+      style={{ 
+        width: '100%', 
+        maxWidth: '400px', 
+        margin: '0 auto',
+        backgroundColor: 'rgba(0, 0, 0, 0.05)',
+        padding: '8px',
+        borderRadius: '12px'
+      }}
     >
       {board.map((cell, index) => (
         <div
           key={index}
-          className={`game-cell w-full aspect-square flex items-center justify-center bg-white/50 dark:bg-white/5 backdrop-blur-sm rounded-md border border-white/30 dark:border-white/10 shadow-sm 
-          hover:bg-white/70 dark:hover:bg-white/10 transition-all duration-300 cursor-pointer
+          className={`game-cell w-full aspect-square flex items-center justify-center bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm rounded-md border-2 border-gray-300 dark:border-gray-600 shadow-sm 
+          hover:bg-white dark:hover:bg-gray-700 transition-all duration-300 cursor-pointer relative
           ${gameStatus !== 'playing' || cell !== null ? 'pointer-events-none' : ''}
-          ${winningCombination?.includes(index) ? 'winning-cell border-blue-300 dark:border-blue-500' : ''}`}
+          ${winningCombination?.includes(index) ? 'winning-cell border-blue-400 dark:border-blue-500' : ''}`}
           onClick={() => makeMove(index)}
         >
           {renderX(index)}

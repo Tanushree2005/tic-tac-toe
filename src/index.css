@@ -1,3 +1,4 @@
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 
 @tailwind base;
@@ -116,6 +117,20 @@
   
   .marker-o {
     @apply text-pink-500;
+  }
+  
+  .game-board {
+    @apply bg-gray-200 dark:bg-gray-700 p-2 rounded-xl;
+  }
+  
+  .game-cell {
+    @apply bg-white/80 dark:bg-gray-800/80 rounded-md border-2 border-gray-300 dark:border-gray-600 
+    flex items-center justify-center aspect-square relative
+    hover:bg-white/90 dark:hover:bg-gray-700/90 transition-colors;
+  }
+  
+  .winning-cell {
+    @apply border-blue-400 dark:border-blue-500 bg-blue-50 dark:bg-blue-900/20;
   }
   
   .btn-primary {
