@@ -1,12 +1,12 @@
-
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { LayoutGrid, User, Bot, ChevronRight } from 'lucide-react';
 import { useGame } from '../contexts/GameContext';
 import Modal from '../components/Modal';
 
 const Index = () => {
   const { startNewGame } = useGame();
+  const navigate = useNavigate();
   const [showOfflineModal, setShowOfflineModal] = useState(false);
   const [showAIModal, setShowAIModal] = useState(false);
   const [playerXName, setPlayerXName] = useState('Player X');
@@ -16,12 +16,14 @@ const Index = () => {
     e.preventDefault();
     startNewGame('offline', playerXName, playerOName);
     setShowOfflineModal(false);
+    navigate('/game');
   };
   
   const handleStartAIGame = (e: React.FormEvent) => {
     e.preventDefault();
     startNewGame('ai', playerXName, 'AI');
     setShowAIModal(false);
+    navigate('/game');
   };
   
   return (
@@ -182,13 +184,12 @@ const Index = () => {
               >
                 Cancel
               </button>
-              <Link
-                to="/game"
-                onClick={handleStartOfflineGame}
+              <button
+                type="submit"
                 className="btn-primary"
               >
                 Start Game
-              </Link>
+              </button>
             </div>
           </div>
         </form>
@@ -225,13 +226,12 @@ const Index = () => {
               >
                 Cancel
               </button>
-              <Link
-                to="/game"
-                onClick={handleStartAIGame}
+              <button
+                type="submit"
                 className="btn-primary"
               >
                 Start Game
-              </Link>
+              </button>
             </div>
           </div>
         </form>
